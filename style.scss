@@ -1,0 +1,36 @@
+$subtext: #7f849c;
+$base: #1e1e2e;
+$desc: #fac6a7;
+$submap: #cba6f7;
+$key: #89b4fa;
+
+.whichkey {
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 1em;
+  color: rgba($subtext, 1);
+  background-color: rgba($base, 0.7);
+  border: 2px solid rgba($submap, 0.8);
+  border-radius: 5px;
+}
+
+
+grid {
+  margin: 10px;
+}
+
+.keybind {
+  margin: 2px;
+}
+
+.key {
+  color: $key;
+}
+
+.layout-desc {
+  color: $desc;
+}
+
+.layout-submap {
+  color: $submap;
+}
+
