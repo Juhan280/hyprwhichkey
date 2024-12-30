@@ -1,9 +1,9 @@
 {
-    "name": "astal-shell",
-    "scripts": {
-        "bundle": "ags bundle app.ts ~/.config/hypr/scripts/hyprwhichkey"
-    },
-    "dependencies": {
-        "astal": "/usr/share/astal/gjs"
-    }
+	"name": "astal-shell",
+	"scripts": {
+		"bundle": "ags bundle app.ts ~/.config/hypr/scripts/hyprwhichkey"
+	},
+	"dependencies": {
+		"astal": "/usr/share/astal/gjs"
+	}
 }

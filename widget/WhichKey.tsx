@@ -1,5 +1,5 @@
-import { App, Astal } from "astal/gtk3"
-import {  Variable } from 'astal'
+import { App, Astal } from "astal/gtk3";
+import { Variable } from "astal";
 import Grid from "../Grid";
 
 declare const React: any;
@@ -25,50 +25,73 @@ export interface BindProps {
 const modkeys = ["shift", , , "alt", , , "mod"];
 function modmaskToKeys(modmask: number): string {
 	return modkeys
-		.filter((_, i) => modmask >> i & 1)
+		.filter((_, i) => (modmask >> i) & 1)
 		.map(key => `<${key}>`)
 		.reverse()
-		.join(" ")
+		.join(" ");
 }
 
 function key(entry: BindProps, padding = 0) {
-	return `${modmaskToKeys(entry.modmask)} ${entry.key}`.padStart(padding)
+	return `${modmaskToKeys(entry.modmask)} ${entry.key}`.padStart(padding);
 }
 
-function Keybind({ entry, padding }: { entry: BindProps, padding: number }) {
-	return <box className="keybind">
-		<label className="key">{key(entry, padding)}</label>
-		<label className="arrow">  </label>
-		<label className={entry.dispatcher === "submap" ? "layout-submap" : "layout-desc"}>
-			{entry.description}
-		</label>
-	</box>
-}
-
-export default function WhichKey({ binds }: { binds: Variable<BindProps[][]> }) {
-	const { BOTTOM, LEFT, RIGHT } = Astal.WindowAnchor
-
-	return <window
-		name="WhichKey"
-		className="whichkey"
-		namespace="hyprland_which_key"
-		layer={Astal.Layer.OVERLAY}
-		visible={false}
-		monitor={0}
-		anchor={BOTTOM | LEFT | RIGHT}
-		application={App}>
-		{binds(binds => <Grid
-			column-homogeneous
-			rowSpacing={2}
-			setup={self => {
-				for (let i = 0; i < binds.length; i++) {
-					let padding = 0;
-					for (let j = 0; j < binds[i].length; j++)
-						if (padding < key(binds[i][j]).length) padding = key(binds[i][j]).length;
-
-					for (let j = 0; j < binds[i].length; j++)
-						self.attach(<Keybind entry={binds[i][j]} padding={padding} />, i, j, 1, 1);
+function Keybind({ entry, padding }: { entry: BindProps; padding: number }) {
+	return (
+		<box className="keybind">
+			<label className="key">{key(entry, padding)}</label>
+			<label className="arrow">  </label>
+			<label
+				className={
+					entry.dispatcher === "submap" ? "layout-submap" : "layout-desc"
 				}
-			}} />)}
-	</window>
+			>
+				{entry.description}
+			</label>
+		</box>
+	);
+}
+
+export default function WhichKey({
+	binds,
+}: {
+	binds: Variable<BindProps[][]>;
+}) {
+	const { BOTTOM, LEFT, RIGHT } = Astal.WindowAnchor;
+
+	return (
+		<window
+			name="WhichKey"
+			className="whichkey"
+			namespace="hyprland_which_key"
+			layer={Astal.Layer.OVERLAY}
+			visible={false}
+			monitor={0}
+			anchor={BOTTOM | LEFT | RIGHT}
+			application={App}
+		>
+			{binds(binds => (
+				<Grid
+					column-homogeneous
+					rowSpacing={2}
+					setup={self => {
+						for (let i = 0; i < binds.length; i++) {
+							let padding = 0;
+							for (let j = 0; j < binds[i].length; j++)
+								if (padding < key(binds[i][j]).length)
+									padding = key(binds[i][j]).length;
+
+							for (let j = 0; j < binds[i].length; j++)
+								self.attach(
+									<Keybind entry={binds[i][j]} padding={padding} />,
+									i,
+									j,
+									1,
+									1,
+								);
+						}
+					}}
+				/>
+			))}
+		</window>
+	);
 }
