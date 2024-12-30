@@ -48,6 +48,10 @@ Ensure you have the following dependencies installed before proceeding:
            onSubmap = astal -i hyprwhichkey
        }
    }
+
+   # For blurring background of hyprwhichkey
+   # Make sure to enable blur in decoration
+   layerrule = blur, hyprland_which_key
    ```
 
 ---
