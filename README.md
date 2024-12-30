@@ -1,6 +1,6 @@
 ## Hyprwhichkey
 
-Which-Key for [Hyprland](https://github.com/hyprwm/Hyprland)
+Which-Key for [Hyprland](https://hyprland.org/)
 
 ---
 
