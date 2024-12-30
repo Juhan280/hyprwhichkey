@@ -42,6 +42,7 @@ App.start({
 	},
 });
 
+// I am adding these here because i don't want them to be shown as 20 separate keybinds in which key
 const extra = [
 	{
 		key: "[1-9,0]",

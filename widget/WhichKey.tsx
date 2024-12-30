@@ -2,6 +2,7 @@ import { App, Astal } from "astal/gtk3";
 import { Variable } from "astal";
 import Grid from "../Grid";
 
+// typesctipt complains about not being able to find 'React' when using jsx
 declare const React: any;
 
 export interface BindProps {
