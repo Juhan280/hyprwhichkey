@@ -12,7 +12,10 @@ App.start({
 	css: style,
 	main() {
 		let wk = WhichKey({ binds });
-		visible.subscribe(vis => wk.set_visible(vis));
+		visible.subscribe(vis => {
+			wk.set_visible(vis);
+			if (vis) wk.clickThrough = true;
+		});
 	},
 	requestHandler(submap, res) {
 		console.log(submap);
