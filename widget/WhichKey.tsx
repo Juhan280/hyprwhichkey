@@ -73,6 +73,7 @@ export default function WhichKey({
 		>
 			{binds(binds => (
 				<Grid
+					className="container"
 					column-homogeneous
 					rowSpacing={2}
 					setup={self => {

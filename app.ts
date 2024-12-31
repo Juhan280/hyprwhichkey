@@ -63,7 +63,6 @@ const extra = [
 	},
 ] as BindProps[];
 
-let last_rows = 0;
 function setBinds(submap: string, columns: number) {
 	let b: BindProps[] = JSON.parse(exec(["hyprctl", "binds", "-j"]));
 	b.unshift(...extra);
@@ -78,10 +77,4 @@ function setBinds(submap: string, columns: number) {
 	let r: BindProps[][] = [];
 	for (let i = 0; i < columns; i++) r.push(b.splice(0, rows));
 	binds.set(r);
-
-	// when it transitions from having more rows to fewer
-	// you could see the un-rendered part of the widget
-	// this skips the transition phase by hiding it
-	if (last_rows > rows) visible.set(false);
-	last_rows = rows;
 }
