@@ -1,7 +1,8 @@
 {
 	"name": "astal-shell",
 	"scripts": {
-		"bundle": "ags bundle app.ts ~/.config/hypr/scripts/hyprwhichkey"
+		"bundle": "ags bundle app.ts ~/.config/hypr/scripts/hyprwhichkey",
+		"format": "npx prettier --use-tabs --arrow-parens avoid -w ."
 	},
 	"dependencies": {
 		"astal": "/usr/share/astal/gjs"

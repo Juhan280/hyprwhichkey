@@ -24,7 +24,16 @@ export interface BindProps {
 }
 
 // See https://github.com/hyprwm/Hyprland/blob/1989b0049f7fb714a2417dfb14d6b4f3d2a079d3/src/devices/IKeyboard.hpp#L12-L21
-const modkeys = ["shift", "caps", "ctrl", "alt", "mod2", "mod3", "super", "mod5"];
+const modkeys = [
+	"shift",
+	"caps",
+	"ctrl",
+	"alt",
+	"mod2",
+	"mod3",
+	"super",
+	"mod5",
+];
 function modmaskToKeys(modmask: number): string {
 	return modkeys
 		.filter((_, i) => (modmask >> i) & 1)
