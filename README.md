@@ -60,7 +60,7 @@ Ensure you have the following dependencies installed before proceeding:
 
    # For blurring background of hyprwhichkey
    # Make sure to enable blur in decoration
-   layerrule = blur, hyprland_which_key
+   layerrule = blur, hyprwhichkey
    ```
 
 ---

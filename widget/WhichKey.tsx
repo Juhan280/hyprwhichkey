@@ -78,7 +78,7 @@ export default function WhichKey({
 		<window
 			name="WhichKey"
 			className="whichkey"
-			namespace="hyprland_which_key"
+			namespace="hyprwhichkey"
 			layer={Astal.Layer.OVERLAY}
 			visible={false}
 			monitor={0}
