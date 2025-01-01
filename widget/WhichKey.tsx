@@ -53,10 +53,15 @@ function Keybind({ entry, padding }: { entry: BindProps; padding: number }) {
 			<label className="arrow">  </label>
 			<label
 				className={
-					entry.dispatcher === "submap" ? "layout-submap" : "layout-desc"
+					entry.dispatcher === "submap"
+						? "submap"
+						: entry.description
+							? "desc"
+							: ""
 				}
 			>
-				{entry.description}
+				{entry.description ||
+					entry.dispatcher + (entry.arg && ": " + entry.arg)}
 			</label>
 		</box>
 	);
