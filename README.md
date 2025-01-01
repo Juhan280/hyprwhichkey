@@ -67,8 +67,7 @@ Ensure you have the following dependencies installed before proceeding:
 
 ### Usage
 
-- **Toggle Help Menu:** Press `SUPER + F1` to view the binds help menu.
-- **Dynamic Hook Integration:** The `hyprhook` plugin seamlessly detects submap changes and activates the which-key interface.
+Keybinds won't appear unless you add the [description flag](https://wiki.hyprland.org/Configuring/Binds/#description) using `bindd`. However, you can leave the description empty while setting the flag, and it will automatically fall back to displaying the dispatcher instead.
 
 ---
 
