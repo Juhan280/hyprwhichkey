@@ -67,10 +67,7 @@ function setBinds(submap: string, columns: number) {
 	let b: BindProps[] = JSON.parse(exec(["hyprctl", "binds", "-j"]));
 	b.unshift(...extra);
 	b = b
-		.filter(
-			bind =>
-				bind.submap === submap && bind.arg !== "reset" && bind.has_description,
-		)
+		.filter(bind => bind.submap === submap && bind.has_description)
 		.sort(bind => +(bind.dispatcher === "submap") - 0.5);
 	const rows = Math.max(Math.ceil(b.length / columns), 4);
 
