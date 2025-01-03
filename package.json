@@ -1,5 +1,6 @@
 {
 	"name": "astal-shell",
+	"main": "app.ts",
 	"scripts": {
 		"bundle": "ags bundle app.ts ~/.config/hypr/scripts/hyprwhichkey",
 		"format": "npx prettier --use-tabs --arrow-parens avoid -w ."

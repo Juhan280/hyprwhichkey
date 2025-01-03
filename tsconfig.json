@@ -11,5 +11,5 @@
 		"jsx": "react-jsx",
 		"jsxImportSource": "astal/gtk3"
 	},
-	"include": ["env.d.ts"]
+	"include": ["app.ts", "env.d.ts"]
 }

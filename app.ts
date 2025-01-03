@@ -1,4 +1,3 @@
-import "./env.d.ts";
 import { App } from "astal/gtk3";
 import style from "./style.scss";
 import WhichKey, { BindProps } from "./widget/WhichKey";
