@@ -1,6 +1,6 @@
 import { App } from "astal/gtk3";
 import style from "./style.scss";
-import WhichKey, { BindProps } from "./widget/WhichKey";
+import WhichKey, { BindProps } from "./WhichKey";
 import { exec, Variable } from "astal";
 
 const visible = Variable(false);

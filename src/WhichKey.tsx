@@ -1,6 +1,6 @@
 import { App, Astal, Widget } from "astal/gtk3";
 import { Variable } from "astal";
-import Grid from "../Grid";
+import Grid from "./Grid";
 
 export interface BindProps {
 	locked: boolean;
