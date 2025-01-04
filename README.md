@@ -35,7 +35,7 @@ Ensure you have [ags](https://github.com/aylur/ags) v2 installed before proceedi
 2. Bundle the application:
 
    ```bash
-   ags bundle app.ts /path/to/bundle/file
+   ags bundle src/app.ts /path/to/bundle/file
    ```
 
 3. Add the script to start at system boot:
