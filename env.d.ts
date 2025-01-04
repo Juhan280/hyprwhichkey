@@ -1,5 +1,6 @@
-/// <reference path="@girs/astal-3.0.d.ts" />
 /// <reference path="node_modules/astal/gtk3/jsx-runtime.ts" />
+/// <reference path="@girs/astal-3.0.d.ts" />
+/// <reference path="@girs/astalhyprland-0.1.d.ts" />
 
 declare const SRC: string;
 

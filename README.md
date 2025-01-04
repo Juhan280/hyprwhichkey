@@ -20,10 +20,7 @@ Which-Key for [Hyprland](https://hyprland.org/)
 
 ### Prerequisites
 
-Ensure you have the following dependencies installed before proceeding:
-
-- [Hyprhook](https://github.com/Hyprhook/Hyprhook/)
-- [ags](https://github.com/aylur/ags)
+Ensure you have [ags](https://github.com/aylur/ags) v2 installed before proceeding.
 
 ---
 
@@ -50,13 +47,7 @@ Ensure you have the following dependencies installed before proceeding:
 4. Configure keybinds and hooks in your `hyprland.conf`:
 
    ```ini
-   bindd = SUPER, F1, Toggle Binds Help, exec, astal -i hyprwhichkey base
-
-   plugin {
-       hyprhook {
-           onSubmap = astal -i hyprwhichkey
-       }
-   }
+   bindd = SUPER, F1, Toggle Binds Help, exec, astal -i hyprwhichkey
 
    # For blurring background of hyprwhichkey
    # Make sure to enable blur in decoration

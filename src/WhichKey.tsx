@@ -80,6 +80,7 @@ export default function WhichKey({
 			visible={false}
 			monitor={0}
 			anchor={BOTTOM | LEFT | RIGHT}
+			onNotifyVisible={self => self.visible && self.set_click_through(true)}
 			application={App}
 		>
 			{binds(binds => (

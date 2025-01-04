@@ -2,44 +2,35 @@ import { App } from "astal/gtk3";
 import style from "./style.scss";
 import WhichKey, { BindProps } from "./WhichKey";
 import { exec, Variable } from "astal";
+import Hyprland from "gi://AstalHyprland";
 
-const visible = Variable(false);
 const binds: Variable<BindProps[][]> = Variable([]);
+let toggleBaseLayer = () => {};
 
 App.start({
 	instanceName: "hyprwhichkey",
 	css: style,
 	main() {
 		let wk = WhichKey({ binds });
-		visible.subscribe(vis => {
-			wk.set_visible(vis);
-			if (vis) wk.clickThrough = true;
-		});
-	},
-	requestHandler(submap, res) {
-		console.log(submap);
-		if (!submap) {
-			visible.set(false);
-			return res("ok");
-		}
+		const hyprland = Hyprland.get_default();
 
-		if (submap === "base") {
-			if (visible.get()) {
-				visible.set(false);
-				return res("ok");
-			}
-			setBinds("", 3);
-		} else {
-			submap = JSON.parse(submap).submap;
-			if (!submap) {
-				visible.set(false);
-				return res("ok");
-			}
+		hyprland.connect("submap", (_, submap) => {
+			console.log(`"${submap}"`);
+			if (!submap) return wk.set_visible(false);
 
 			setBinds(submap, 4);
-		}
+			wk.set_visible(true);
+		});
 
-		visible.set(true);
+		toggleBaseLayer = () => {
+			console.log("base");
+			if (wk.visible) return wk.set_visible(false);
+			setBinds("", 3);
+			wk.set_visible(true);
+		};
+	},
+	requestHandler(_request, res) {
+		toggleBaseLayer();
 		res("ok");
 	},
 });
