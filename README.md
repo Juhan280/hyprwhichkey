@@ -44,7 +44,7 @@ Ensure you have [ags](https://github.com/aylur/ags) v2 installed before proceedi
    exec-once = gjs -m /path/to/bundle/file
    ```
 
-4. Configure keybinds and hooks in your `hyprland.conf`:
+4. Configure keybind and blur:
 
    ```ini
    bindd = SUPER, F1, Toggle Binds Help, exec, astal -i hyprwhichkey
