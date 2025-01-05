@@ -21,16 +21,7 @@ export interface BindProps {
 }
 
 // See https://github.com/hyprwm/Hyprland/blob/1989b0049f7fb714a2417dfb14d6b4f3d2a079d3/src/devices/IKeyboard.hpp#L12-L21
-const modkeys = [
-	"shift",
-	"caps",
-	"ctrl",
-	"alt",
-	"mod2",
-	"mod3",
-	"super",
-	"mod5",
-];
+const modkeys = ["shift", "caps", "ctrl", "alt", "mod2", "mod3", "super", "mod5"];
 function modmaskToKeys(modmask: number): string {
 	return modkeys
 		.filter((_, i) => (modmask >> i) & 1)
@@ -48,27 +39,14 @@ function Keybind({ entry, padding }: { entry: BindProps; padding: number }) {
 		<box className="keybind">
 			<label className="key">{key(entry, padding)}</label>
 			<label className="arrow">  </label>
-			<label
-				className={
-					entry.dispatcher === "submap"
-						? "submap"
-						: entry.description
-							? "desc"
-							: ""
-				}
-			>
-				{entry.description ||
-					entry.dispatcher + (entry.arg && ": " + entry.arg)}
+			<label className={entry.dispatcher === "submap" ? "submap" : entry.description ? "desc" : ""}>
+				{entry.description || entry.dispatcher + (entry.arg && ": " + entry.arg)}
 			</label>
 		</box>
 	);
 }
 
-export default function WhichKey({
-	binds,
-}: {
-	binds: Variable<BindProps[][]>;
-}) {
+export default function WhichKey({ binds }: { binds: Variable<BindProps[][]> }) {
 	const { BOTTOM, LEFT, RIGHT } = Astal.WindowAnchor;
 
 	return (
@@ -92,17 +70,10 @@ export default function WhichKey({
 						for (let i = 0; i < binds.length; i++) {
 							let padding = 0;
 							for (let j = 0; j < binds[i].length; j++)
-								if (padding < key(binds[i][j]).length)
-									padding = key(binds[i][j]).length;
+								padding = Math.max(padding, key(binds[i][j]).length);
 
 							for (let j = 0; j < binds[i].length; j++)
-								self.attach(
-									<Keybind entry={binds[i][j]} padding={padding} />,
-									i,
-									j,
-									1,
-									1,
-								);
+								self.attach(<Keybind entry={binds[i][j]} padding={padding} />, i, j, 1, 1);
 						}
 					}}
 				/>

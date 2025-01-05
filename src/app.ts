@@ -4,15 +4,16 @@ import WhichKey, { BindProps } from "./WhichKey";
 import { exec, Variable } from "astal";
 import Hyprland from "gi://AstalHyprland";
 
-const binds: Variable<BindProps[][]> = Variable([]);
+const hyprland = Hyprland.get_default();
 let toggleBaseLayer = () => {};
+
+const binds: Variable<BindProps[][]> = Variable([]);
 
 App.start({
 	instanceName: "hyprwhichkey",
 	css: style,
 	main() {
 		let wk = WhichKey({ binds });
-		const hyprland = Hyprland.get_default();
 
 		hyprland.connect("submap", (_, submap) => {
 			console.log(`"${submap}"`);
