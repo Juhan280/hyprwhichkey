@@ -2,7 +2,6 @@
 
 Which-Key for [Hyprland](https://hyprland.org/)
 
-> [!NOTE]
 > Hyprwhichkey was inspired by the **eww which-key example** of the [Hyprhook](https://github.com/Hyprhook/Hyprhook/) plugin. However, since I am not familiar with the **Yuck programming language**, I found it difficult to make tiny adjustments. To address this, I created **Hyprwhichkey** using **TypeScript** with [ags](https://github.com/aylur/ags) (Astal) for better flexibility and ease of use.
 
 ---
