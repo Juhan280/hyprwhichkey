@@ -1,27 +1,10 @@
 import { App, Astal, Widget } from "astal/gtk3";
-import { Variable } from "astal";
+import { Binding } from "astal";
 import Grid from "./Grid";
-
-export interface BindProps {
-	locked: boolean;
-	mouse: boolean;
-	release: boolean;
-	repeat: boolean;
-	longPress: boolean;
-	non_consuming: boolean;
-	has_description: boolean;
-	modmask: number;
-	submap: string;
-	key: string;
-	keycode: number;
-	catch_all: boolean;
-	description: string;
-	dispatcher: string;
-	arg: string;
-}
+import AstalHyprland from "gi://AstalHyprland";
 
 // See https://github.com/hyprwm/Hyprland/blob/1989b0049f7fb714a2417dfb14d6b4f3d2a079d3/src/devices/IKeyboard.hpp#L12-L21
-const modkeys = ["shift", "caps", "ctrl", "alt", "mod2", "mod3", "super", "mod5"];
+const modkeys = ["shift", "caps", "ctrl", "alt", "mod2", "mod3", "super", "mod5"] as const;
 function modmaskToKeys(modmask: number): string {
 	return modkeys
 		.filter((_, i) => (modmask >> i) & 1)
@@ -30,11 +13,11 @@ function modmaskToKeys(modmask: number): string {
 		.join(" ");
 }
 
-function key(entry: BindProps, padding = 0) {
+function key(entry: AstalHyprland.Bind, padding = 0) {
 	return `${modmaskToKeys(entry.modmask)} ${entry.key}`.padStart(padding);
 }
 
-function Keybind({ entry, padding }: { entry: BindProps; padding: number }) {
+function Keybind({ entry, padding }: { entry: AstalHyprland.Bind; padding: number }) {
 	return (
 		<box className="keybind">
 			<label className="key">{key(entry, padding)}</label>
@@ -46,7 +29,7 @@ function Keybind({ entry, padding }: { entry: BindProps; padding: number }) {
 	);
 }
 
-export default function WhichKey({ binds }: { binds: Variable<BindProps[][]> }) {
+export default function WhichKey({ binds }: { binds: Binding<AstalHyprland.Bind[][]> }) {
 	const { BOTTOM, LEFT, RIGHT } = Astal.WindowAnchor;
 
 	return (
@@ -61,7 +44,7 @@ export default function WhichKey({ binds }: { binds: Variable<BindProps[][]> }) 
 			onNotifyVisible={self => self.visible && self.set_click_through(true)}
 			application={App}
 		>
-			{binds(binds => (
+			{binds.as(binds => (
 				<Grid
 					className="container"
 					column-homogeneous

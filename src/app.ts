@@ -1,19 +1,19 @@
 import { App } from "astal/gtk3";
 import style from "./style.scss";
-import WhichKey, { BindProps } from "./WhichKey";
-import { exec, Variable } from "astal";
-import Hyprland from "gi://AstalHyprland";
+import WhichKey from "./WhichKey";
+import { Variable } from "astal";
+import AstalHyprland from "gi://AstalHyprland";
 
-const hyprland = Hyprland.get_default();
+const hyprland = AstalHyprland.get_default();
 let toggleBaseLayer = () => {};
 
-const binds: Variable<BindProps[][]> = Variable([]);
+const binds_arr = Variable<AstalHyprland.Bind[][]>([]);
 
 App.start({
 	instanceName: "hyprwhichkey",
 	css: style,
 	main() {
-		let wk = WhichKey({ binds });
+		let wk = WhichKey({ binds: binds_arr() });
 
 		hyprland.connect("submap", (_, submap) => {
 			console.log(`"${submap}"`);
@@ -52,17 +52,17 @@ const extra = [
 		has_description: true,
 		description: "Move to workspace [1-10]",
 	},
-] as BindProps[];
+] as AstalHyprland.Bind[];
 
 function setBinds(submap: string, columns: number) {
-	let b: BindProps[] = JSON.parse(exec(["hyprctl", "binds", "-j"]));
-	b.unshift(...extra);
-	b = b
+	let binds = hyprland.get_binds();
+	binds.unshift(...extra);
+	binds = binds
 		.filter(bind => bind.submap === submap && bind.has_description)
-		.sort(bind => +(bind.dispatcher === "submap") - 0.5);
-	const rows = Math.max(Math.ceil(b.length / columns), 4);
+		.sort(bind => +(bind.dispatcher === "submap") - 0.5); // make non-submap dispatcher appear first
+	const rows = Math.max(Math.ceil(binds.length / columns), 4);
 
-	let r: BindProps[][] = [];
-	for (let i = 0; i < columns; i++) r.push(b.splice(0, rows));
-	binds.set(r);
+	let r: AstalHyprland.Bind[][] = [];
+	for (let i = 0; i < columns; i++) r.push(binds.splice(0, rows));
+	binds_arr.set(r);
 }
