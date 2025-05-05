@@ -82,4 +82,8 @@ We welcome contributions! To get started:
 
 ### License
 
-This project is licensed under the MIT License. See [LICENSE.txt](LICENSE.txt) for details.
+This project is licensed under the MIT License. See [LICENSE](./LICENSE) for details.
+
+This project uses [Astal](https://github.com/Aylur/astal), which is licensed under the LGPL-2.1. You must comply with the LGPL-2.1 when redistributing software linked with Astal. This includes allowing reverse-engineering and replacement of the LGPL-covered components.
+
+Hyprwhichkey does not modify Astal and uses it as a runtime dependency via its public API.
